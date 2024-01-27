@@ -1,0 +1,16 @@
+version: "2.0"
+services:
+  postman_test:
+      container_name: postman_collection
+      build: .
+      image: postman_report
+      command:
+        run GET_POST_PUT_PATCH_DELETE.postman_collection.json
+        -e API_Automation.postman_environment.json
+        -r htmlextra,cli
+        --reporter-htmlextra-report = "htmlextra.html"
+        # --reporter-html-export reports/report.html
+        # --reporter-html-template reports/template.hbs
+      volumes:
+        - ./src:/etc/newman
+
